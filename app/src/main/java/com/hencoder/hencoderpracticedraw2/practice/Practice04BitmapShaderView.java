@@ -1,11 +1,16 @@
 package com.hencoder.hencoderpracticedraw2.practice;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Shader;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.hencoder.hencoderpracticedraw2.R;
 
 public class Practice04BitmapShaderView extends View {
     Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -31,6 +36,11 @@ public class Practice04BitmapShaderView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        //tileX     横向的
+        //tileY     纵向
+        paint.setShader(new BitmapShader(BitmapFactory.decodeResource(getResources(), R.drawable.batman), Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
         canvas.drawCircle(200, 200, 200, paint);
+        paint.setShader(new BitmapShader(BitmapFactory.decodeResource(getResources(), R.drawable.batman), Shader.TileMode.REPEAT, Shader.TileMode.MIRROR));
+        canvas.drawCircle(800, 400, 400, paint);
     }
 }
