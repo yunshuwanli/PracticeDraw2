@@ -4,6 +4,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -34,13 +37,14 @@ public class Practice06LightingColorFilterView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         // 使用 Paint.setColorFilter() 来设置 LightingColorFilter
-
         // 第一个 LightingColorFilter：去掉红色部分
+        // 0xFFFFFFFF（白色）  后六位表示白色  0xFF000000（黑色） 得出 十六进制颜色 八位（0x000000）(代表三原色) 十位的（0xFF000000）加了透明度和三原色
+        paint.setColorFilter(new LightingColorFilter(0x00ffff,0x000000));
         canvas.drawBitmap(bitmap, 0, 0, paint);
 
         // 第二个 LightingColorFilter：增强绿色部分
+        paint.setColorFilter(new LightingColorFilter(0xffffff,0x003000));
         canvas.drawBitmap(bitmap, bitmap.getWidth() + 100, 0, paint);
     }
 }
